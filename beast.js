@@ -17,4 +17,4 @@
 	};
 }());
 
-Beast();
+Beast().init("gcanvas");
