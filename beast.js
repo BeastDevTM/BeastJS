@@ -1,1 +1,4 @@
-console.log("hi");
+(function() {
+	var self = {};
+
+}());
