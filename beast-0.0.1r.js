@@ -24,6 +24,16 @@ window.Beast = (function() {
         setInterval(box.update, 10);
     }
 
+
+    //parameter specifications for box.CO function:
+    /**
+     * @param {string} name
+     * @param {number} x
+     * @param {number} y
+     * @param {number} w
+     * @param {number} h
+     */
+
     //CO stands for "Create Object".
     box.CO = function(name, x, y, w, h) {
 
@@ -47,6 +57,12 @@ window.Beast = (function() {
         //adds the object to the main list of objects.
         box.objects.push(eo);
     }
+
+    //parameter specs for box.AA function:
+    /**
+     * @param {object} obj
+     * @param {string} att
+     */
 
     //AA stands for "Add Attribute".
     box.AA = function(obj, att) {
