@@ -11,7 +11,7 @@ window.Beast = (function() {
     let box = {};
 
     //box.Objects stores all of the objects that this function makes.
-    box.Objects = []; 
+    box.objects = []; 
 
     box.init = (canvas) => {
         //fancy smanshy stuff:
@@ -26,25 +26,50 @@ window.Beast = (function() {
     };
 
     //CO stands for "Create Object".
-    box.CO = (x, y, w, h) => {
+    box.CO = (name, x, y, w, h) => {
+
+        //eo stands for "empty object".
         let eo = {
+            name : name, //basically the id, but name looks better
             x : x,
             y : y,
-            w : w,
-            h : h
+            width : w,
+            height : h
         };
+
+        // this is what the main "box.update" function will call,
+        // when it goes through each object and updates it.
+        eo.update = () => {
+
+            //draws the object on the Canvas / box.screen
+            box.screen.fillRect(eo.x, eo.y, eo.width, eo.height);
+        };
+
+        //adds the object to the main list of objects.
+        box.objects.push(eo);
     };
 
     //AA stands for "Add Attribute".
     box.AA = (obj, att) => {
+        //  XXXXXXXXXXXXXXXXXXXXXXX
+        //  XX List of attrs are XX
+        //  XX found in readme   XX
+        //  XXXXXXXXXXXXXXXXXXXXXXX
 
+        
     };
 
     //Main update loop:
     box.update = () => {
+        box.screen.clearRect(0, 0, box.screen.width, box.screen.height);
+
+        //cycles through each object
+        for(i in box.objects) {
+            box.objects[i].update();
+        };
 
     };
 
-    //
+    // returns the whole function, to make it accessible.
     return box;
 }());
