@@ -1,5 +1,5 @@
 /*
- ____  ____   __   ____  ____          __  ____ 
+ ____  ____   __   ____  ____          __  ____
 (  _ \(  __) / _\ / ___)(_  _)       _(  )/ ___)
  ) _ ( ) _) /    \\___ \  )(    _   / \) \\___ \
 (____/(____)\_/\_/(____/ (__)  (_)  \____/(____/v0.0.1r
@@ -11,12 +11,12 @@ window.Beast = (function() {
     let box = {};
 
     //box.Objects stores all of the objects that this function makes.
-    box.objects = []; 
+    box.objects = [];
 
-    box.init = (canvas) => {
+    box.init = function(canvas) {
         //fancy smanshy stuff:
         console.log('%c**BEAST.JS RUNNING**', 'background: red; color: black; display: block; font-weight: bold;');
-        
+
         //box.screen is basicly a fancy name for "context".
         box.screen = document.getElementById(canvas)
             .getContext('2d');
@@ -26,7 +26,7 @@ window.Beast = (function() {
     };
 
     //CO stands for "Create Object".
-    box.CO = (name, x, y, w, h) => {
+    box.CO = function(name, x, y, w, h) {
 
         //eo stands for "empty object".
         let eo = {
@@ -39,7 +39,7 @@ window.Beast = (function() {
 
         // this is what the main "box.update" function will call,
         // when it goes through each object and updates it.
-        eo.update = () => {
+        eo.update = function() {
 
             //draws the object on the Canvas / box.screen
             box.screen.fillRect(eo.x, eo.y, eo.width, eo.height);
@@ -50,13 +50,17 @@ window.Beast = (function() {
     };
 
     //AA stands for "Add Attribute".
-    box.AA = (obj, att) => {
+    box.AA = function(obj, att) {
         //  XXXXXXXXXXXXXXXXXXXXXXX
         //  XX List of attrs are XX
         //  XX found in readme   XX
         //  XXXXXXXXXXXXXXXXXXXXXXX
 
-        
+	for(i in box.objects) {
+		if(box.objects[i] === obj) {
+			console.log("found object");
+		}
+	}
     };
 
     //Main update loop:
