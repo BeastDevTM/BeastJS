@@ -18,12 +18,11 @@ window.Beast = (function() {
         console.log('%c**BEAST.JS RUNNING**', 'background: red; color: black; display: block; font-weight: bold;');
 
         //box.screen is basicly a fancy name for "context".
-        box.screen = document.getElementById(canvas)
-            .getContext('2d');
+        box.screen = document.getElementById(canvas).getContext('2d');
 
         //sets the update interval
         setInterval(box.update, 10);
-    };
+    }
 
     //CO stands for "Create Object".
     box.CO = function(name, x, y, w, h) {
@@ -43,11 +42,11 @@ window.Beast = (function() {
 
             //draws the object on the Canvas / box.screen
             box.screen.fillRect(eo.x, eo.y, eo.width, eo.height);
-        };
+        }
 
         //adds the object to the main list of objects.
         box.objects.push(eo);
-    };
+    }
 
     //AA stands for "Add Attribute".
     box.AA = function(obj, att) {
@@ -56,23 +55,25 @@ window.Beast = (function() {
         //  XX found in readme   XX
         //  XXXXXXXXXXXXXXXXXXXXXXX
 
-	for(i in box.objects) {
-		if(box.objects[i] === obj) {
-			console.log("found object");
-		}
-	}
-    };
+	    for(i in box.objects) {
+		    if(box.objects[i] === obj) {
+			    console.log("found object");
+		    }
+	    }
+    }
 
     //Main update loop:
-    box.update = () => {
+    box.update = function() {
+
+        //clears the screen before everythings draws again, so nothing overlaps.
         box.screen.clearRect(0, 0, box.screen.width, box.screen.height);
 
         //cycles through each object
         for(i in box.objects) {
             box.objects[i].update();
-        };
+        }
 
-    };
+    }
 
     // returns the whole function, to make it accessible.
     return box;
