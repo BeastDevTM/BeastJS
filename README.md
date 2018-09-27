@@ -2,5 +2,7 @@
 
 ## PARAMS
 
-COLOR: STRING | SETS THE COLOR OF AN OBJECT
+COLOR: STRING >> SETS THE COLOR OF AN OBJECT
+==============================================
+
 
