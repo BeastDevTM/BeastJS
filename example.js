@@ -9,11 +9,11 @@ Beast.CO("box1", 0, 0, 200, 200);
 Beast.AA("box1", "COLOR", "blue");
 
 var whattodo = 0;
-while(1 === 1) {
+function oof() {
   if(whattodo === 1) {
     Beast.AA("box1", "GRAVITY", 1);
     Beast.RO("box1", "PUSHRIGHT", 10);
-    break;
   }
 }
 
+setInterval(oof, 30)
