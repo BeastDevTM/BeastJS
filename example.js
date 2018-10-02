@@ -1,3 +1,4 @@
+
 //BEAST JS EXAMPLE:
 
 //STARTS THE INTERVAL:
@@ -12,6 +13,7 @@ while(1 === 1) {
   if(whattodo === 1) {
     Beast.AA("box1", "GRAVITY", 1);
     Beast.RO("box1", "PUSHRIGHT", 10);
+    break;
   }
 }
 
