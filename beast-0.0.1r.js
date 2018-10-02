@@ -95,7 +95,10 @@ window.Beast = (function() {
                     eo.y += eo.gravity;
                     //if object is out of bounds:
                     if(eo.y >= box.background.bounds.y2 - eo.height) {
-                        eo.y -= eo.gravity;
+
+                        //sets y equal to the screen height, because if the gravity does not,
+                        //equal out to be the exact height of the canvas, this rounds it up or down:
+                        eo.y = box.ncscreen.height- eo.height;
                     }
                 }
 
