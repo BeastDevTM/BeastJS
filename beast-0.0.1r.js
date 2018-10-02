@@ -3,6 +3,7 @@
 (  _ \(  __) / _\ / ___)(_  _)       _(  )/ ___)
  ) _ ( ) _) /    \\___ \  )(    _   / \) \\___ \
 (____/(____)\_/\_/(____/ (__)  (_)  \____/(____/v0.0.1r
+
 */
 
 window.Beast = (function() {
@@ -37,6 +38,7 @@ window.Beast = (function() {
             //sets the update interval
             setInterval(box.update, 10);
         }
+
         //parameter specifications for box.CO function:
         /**
          * @param {string} name
@@ -63,7 +65,6 @@ window.Beast = (function() {
                     right : 0,
                     left : 0,
                     up : 0,
-                    down : 0,
                     friction : 1
                 },
 
@@ -71,11 +72,10 @@ window.Beast = (function() {
                 const_velocity : {
                     right : 0,
                     left : 0,
-                    up : 0,
-                    down : 0,
-                    friction : 1
+                    up : 0
                 }
             };
+
             // this is what the main "box.update" function will call,
             // when it goes through each object and updates it.
             eo.update = function() {
@@ -119,14 +119,25 @@ window.Beast = (function() {
                 }
 
                 if(eo.velocity.up !== 0) {
-                    eo.velocity.up -= eo.velocity.friction / 16;
+                    eo.gravity = false;
+                    eo.velocity.up -= eo.velocity.friction / 8;
                     if(eo.velocity.up <= 0) {
                         eo.velocity.up = 0;
+                        eo.gravity = true;
                     }
 
                     eo.y -= eo.velocity.up;
                 }
 
+                //the following 3 if statements will be for constant rate of velocity:
+                if(eo.const_velocity.right !== 0) {
+                    eo.x += eo.const_velocity.right;
+                }
+
+                if(eo.const_velocity.up !== 0) {
+                    eo.gravity = false;
+                    eo.y -= eo.const_velocity.up;
+                }
                 //draws the object on the Canvas / box.screen
                 box.screen.fillRect(eo.x, eo.y, eo.width, eo.height);
             }
@@ -176,10 +187,23 @@ window.Beast = (function() {
                         box.objects[i].gspeed = value;
                     }
 
+                    /*
+                        the following 4 "if statements" add constant rate of motion to an object,
+                        if the opposite motion is added on top of the other motion, they will cancel out,
+                        if not specifyed otherwise.
+                    */
+
                     if(attr === "CONSTRIGHT") {
                         box.objects[i].const_velocity.right = value;
                     }
 
+                    if(attr === "CONSTLEFT") {
+                        box.objects[i].const_velocity.left = value;
+                    }
+
+                    if(attr === "CONSTUP") {
+                        box.objects[i].const_velocity.up = value;
+                    }
                 }
             }
         }
@@ -220,10 +244,17 @@ window.Beast = (function() {
             //clears the screen before everythings draws again, so nothing overlaps:
             box.screen.clearRect(0, 0, 9999, 9999);
 
+            //draws the background:
+            if(box.background.color !== null) {
+                box.screen.fillStyle = box.background.color;
+                box.screen.fillRect(0, 0, box.ncscreen.width, box.ncscreen.height);
+            }
+
             //cycles through and updates each object
             for(i in box.objects) {
                 box.objects[i].update();
             }
+
         }
 
         // returns the whole function, to make it accessible.
