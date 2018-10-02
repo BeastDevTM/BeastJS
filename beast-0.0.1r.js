@@ -104,6 +104,7 @@ window.Beast = (function() {
 
                 //the following are push functions
                 if(eo.velocity.right !== 0) {
+
                     eo.velocity.right -= eo.velocity.friction / 8;
                     if(eo.velocity.right <= 0) {
                         eo.velocity.right = 0;
@@ -113,6 +114,7 @@ window.Beast = (function() {
                 }
 
                 if(eo.velocity.left !== 0) {
+
                     eo.velocity.left -= eo.velocity.friction / 8;
                     if(eo.velocity.left <= 0) {
                         eo.velocity.left = 0;
@@ -122,7 +124,10 @@ window.Beast = (function() {
                 }
 
                 if(eo.velocity.up !== 0) {
+
+                    //makes gravity false untill the peak of the push:
                     eo.gravity = false;
+
                     eo.velocity.up -= eo.velocity.friction / 8;
                     if(eo.velocity.up <= 0) {
                         eo.velocity.up = 0;
@@ -178,14 +183,17 @@ window.Beast = (function() {
 
                 //If the Selection is valid:
                 if(box.objects[i].name === obj) {
+
                     //Here is where the "FUN" begins:
                         //sets the color for the target object:
                     if(attr === "COLOR") {
+
                         box.objects[i].color = value;
                     }
 
                     //Adds gravity(constant rate of downward force + acceleration) to an object:
                     if(attr === "GRAVITY") {
+
                         box.objects[i].gravityENABLED = true;
                         box.objects[i].gspeed = value;
                     }
@@ -197,14 +205,17 @@ window.Beast = (function() {
                     */
 
                     if(attr === "CONSTRIGHT") {
+
                         box.objects[i].const_velocity.right = value;
                     }
 
                     if(attr === "CONSTLEFT") {
+
                         box.objects[i].const_velocity.left = value;
                     }
 
                     if(attr === "CONSTUP") {
+
                         box.objects[i].const_velocity.up = value;
                     }
                 }
@@ -235,6 +246,7 @@ window.Beast = (function() {
                     }
 
                     if(attr === "PUSHUP") {
+
                         box.objects[i].velocity.up = value;
                     }
                 }
@@ -249,6 +261,7 @@ window.Beast = (function() {
 
             //draws the background:
             if(box.background.color !== null) {
+                
                 box.screen.fillStyle = box.background.color;
                 box.screen.fillRect(0, 0, box.ncscreen.width, box.ncscreen.height);
             }
