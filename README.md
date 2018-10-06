@@ -1,5 +1,5 @@
 # BeastJS
-Dom canvas elements
+game maker
 
 ## PARAMS
 
